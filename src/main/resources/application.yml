@@ -1,3 +1,15 @@
 spring:
   application:
     name: msa4-spring
+  web:
+    error:
+      include-binding-errors: always
+#      include-stacktrace: always
+#      include-message: always
+
+logging:
+  file:
+    name: logs/error.log
+  level:
+    root: info
+    com.msa4spring.controllers.LoggingController: debug
