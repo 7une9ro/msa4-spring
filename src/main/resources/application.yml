@@ -3,7 +3,7 @@ spring:
     name: msa4-spring
   web:
     error:
-      include-binding-errors: always
+#      include-binding-errors: always
 #      include-stacktrace: always
 #      include-message: always
 
