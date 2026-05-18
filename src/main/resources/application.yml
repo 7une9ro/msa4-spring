@@ -3,9 +3,19 @@ spring:
     name: msa4-spring
   web:
     error:
-#      include-binding-errors: always
-#      include-stacktrace: always
-#      include-message: always
+     # include-binding-errors: always
+     # include-stacktrace: always
+     # include-message: always
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dbsample?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+
+# Mybatis 설정
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.msa4spring
 
 logging:
   file:

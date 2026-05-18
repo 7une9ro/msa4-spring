@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.sql.SQLException;
 import java.util.List;
 
 // [NOTE]: RESTful API 서버의 경우 @RestControllerAdvice 을 사용 (2026-05-15, JunHyeon)
@@ -32,6 +33,17 @@ public class GlobalExceptionHandler {
                 .code("E01")
                 .msg("유효성 검사 실패")
                 .data(errorMsgList)
+                .build());
+    }
+
+    @ExceptionHandler(SQLException.class)
+    public ResponseEntity<ResponseDTO<String>> sqlExceptionHandle(SQLException e) {
+        log.error(e.getMessage());
+
+        return ResponseEntity.status(500).body(ResponseDTO.<String>builder()
+                .code("E80")
+                .msg("DB 에러 발생")
+                .data("현재 서비스 이용이 불가능합니다. 잠시후 다시 시도해 주십시오.")
                 .build());
     }
 
